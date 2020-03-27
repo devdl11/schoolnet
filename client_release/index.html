@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <title>SchoolNet</title>
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="css/my_style.css" rel="stylesheet">
+    </head>
+    <body style="background-color: #D7D7D7;">
+        <div class="text-center" style="width: 100%; height: 100px; background-color:gray; position: relative;">
+            <h2 style="font-size: 30px; color: snow; top: 25px; position: relative;" class="object-center">Bienvenu sur SchoolNet!</h2>
+        </div>
+        <div role="alert" id="alert-co" class="text-center transition-opacity duration-700 ease-linear" style="opacity: 0;">
+            <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+              Attention!
+            </div>
+            <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+              <p>Impossible de se connecter au serveur distant!</p>
+            </div>
+          </div>
+        <div id="login" class="text-center content-center" style="margin-top: 2%; margin-right: 30%; margin-left: 30%;">
+            <div style="background-color: #EBEBEB; border-radius: 20px;" class="shadow-lg">
+                <h2 style="font-size: 30px; text-decoration: underline;">Connexion</h2><br/>
+                <h3 style="font-size: 25px; letter-spacing: 1px;"class="font-bold">Nom</h3> <input style="font-size: 28px; margin: 8px 0; padding: 5px 10px;box-sizing: border-box; border-color: black; border: 2px solid; background-color: snow; border-radius: 4px;" id="nom"/>
+                <br>
+                <h3 style="font-size: 25px; letter-spacing: 1px;"class="font-bold">Prénom</h3> <input style="font-size: 28px; margin: 8px 0; padding: 5px 10px;box-sizing: border-box; border-color: black; border: 2px solid; background-color: snow; border-radius: 4px;" id="prenom"/>
+                <br>
+                <button type="button"class="cursor-not-allowed opacity-50 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style="font-size: 25px; border: 2px solid; margin-top: 10px; margin-bottom: 20px;" id="co_submit" disabled>
+                    Connexion
+                </button>
+            </div>
+        </div>
+        <div id="update" class="text-center bg-green-500" style="display: none; margin-left: 15%; margin-right: 15%; border-radius: 20px;">
+            <h1 style="font-size: 50px; color: #FAFAFA; margin-top: 15px;">Mise à jour diponible!</h1><br>
+            <h1 style="font-size: 35px; border: 2px solid slategray; margin-left: 25%; margin-right: 25%; border-radius: 20px;" class="text-blue-700 hover:text-white hover:bg-orange-400 bg-orange-300" id="get_update">Obtenir la nouvelle version</h1>
+            <br>
+            <div style="display: none;" id="progress_dwnl">
+                <h2 style="font-size: 20px;" class="text-indigo-200 inline">Progression: </h2><h2 style="font-size: 20px;" class="text-indigo-200 inline" id="progress_up_down">0/3</h2>
+            </div>
+            <br>
+            <h2 style="font-size: 30px; color: #E5E5E5;">Veuillez patienter durant le téléchargement <br> Ne rafraichissez pas la page!</h2>
+        </div>
+        <div id="princ" class="text-center content-center" style="opacity: 0; display: none;">
+            <h2 style="font-size: 25px;" class="inline">Dates disponibles: </h2><select name="date_devoir" size="1" style="font-size: 24px;" id="toutedate"></select>
+            <br>
+            <button type="button"class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style="font-size: 25px; border: 2px solid; margin-top: 10px; margin-bottom: 20px;" id="selecteDateVal">
+                Obtenir
+            </button>
+        </div>
+        <div id="dwnld_file" class="text-center bg-indigo-400" style="display: none; margin-left: 15%; margin-right: 15%; border-radius: 20px;">
+            <h1 style="font-size: 50px; color: #FAFAFA; margin-top: 15px;">Télécharger un document</h1><br>
+            <h1 style="font-size: 30px; border: 2px solid slategray; margin-left: 25%; margin-right: 25%; border-radius: 20px;" class="text-red-600 hover:text-white hover:bg-purple-600 bg-purple-700" id="file_name">{name}</h1>
+            <br>
+            <div style="display: none;" id="progress_dwnl-file">
+                <h2 style="font-size: 20px;" class="text-indigo-200 inline">Progression: </h2><h2 style="font-size: 20px;" class="text-indigo-200 inline" id="progress_up_down-file">0/3</h2>
+            </div>
+            <br>
+            <h2 style="font-size: 30px; color: #E5E5E5;">Veuillez patienter durant le téléchargement <br> Ne rafraichissez pas la page!</h2>
+            <br>
+            <h1 style="font-size: 25px; border: 2px solid slategray; margin-left: 35%; margin-right: 35%; border-radius: 15px;" class="text-red-600 hover:text-white hover:bg-green-500 bg-green-400" id="backbutton">Retour en arrière</h1>
+        </div>
+        <div id="dateInfo" style="background-color: #E5E5E5; margin-right: 40px; margin-left: 40px; border-radius: 20px; padding-bottom: 0.01px; margin-top: 10px; display: none;">
+            <h1 style="position: relative; left: 10%; font-size: 30px;" class="inline" id="date">{date}</h1>
+            <button id="back_menu" type="button" class="inline object-right-top float-right bg-teal-400 hover:bg-indigo-400" style="position: relative; left: -2%; font-size: 25px; border: 2px solid white;color:snow; margin-top: 2px; padding-left: 2px; padding-right: 3px;">Retour au menu principale</button>
+            <br>
+            <div id="exempleMatiere" class="text-center shadow-2xl" style="border-radius: 20px; border: 2px solid steelblue; margin-left: 100px; margin-right: 100px; margin-bottom: 25px; background-color: #FAFAFA;display: none;">
+                <h1 style="font-size: 40px; position: relative; left: -2%;" class="inline">Matière: </h1><h1 style="font-size: 35px;" id="matiereName" class="inline">{Matiere}</h1>
+                <br>
+                <h2 style="font-size: 35px; position: relative; left: -15%;" class="inline">Professeur: </h2><h2 style="font-size: 30px; position: relative; left: -12%;" id="profName" class="inline">{Professeur} </h2>
+                <br><hr style="border-top: 2.5px; border-style: dashed;">
+                <h3 style="font-size: 30px; position: relative; left: -35%; text-decoration: underline red;">Devoir:</h3>
+                <div style="margin-left: 40px; margin-right: 40px; font-size: 20px; margin-bottom: 10px;" id="devoir_contenu">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum porttitor eu lorem sed congue. Mauris consectetur consequat accumsan. Ut vitae feugiat tellus, et dictum magna. Vestibulum at vehicula sapien, vitae maximus ante. Vivamus scelerisque tempus enim at ullamcorper. Integer bibendum libero id ligula mattis pharetra. Proin sollicitudin, erat in dignissim eleifend, lectus massa ullamcorper nisi, ac dignissim augue eros eget sapien. Donec vehicula congue nunc eget sollicitudin. Integer pretium mauris id ligula tempor, at vestibulum felis cursus. Sed ac nunc vitae mi vehicula congue. Maecenas sagittis non tortor et fringilla. 
+                </div>
+                <div id="docs_devoirs" style="margin-bottom: 10px;">
+                    <h3 id="doc" style="font-style: italic; font-size: 22px; text-decoration: underline cornflowerblue; padding: 15px; border-radius: 20px;" class="inline-block hover:bg-red-600 hover:text-white">docname.extension</h3>
+                    
+                </div>
+                <hr style="border-top: 3px solid teal; padding: 2px; margin-left: 25%; margin-right: 25%;">
+                <h3 style="font-size: 27px; position: relative; left: -35%; text-decoration: underline red;">Contenu de la séance:</h3>
+                <div style="margin-left: 40px; margin-right: 40px; font-size: 20px; margin-bottom: 10px;" id="contenu_seance">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum porttitor eu lorem sed congue. Mauris consectetur consequat accumsan. Ut vitae feugiat tellus, et dictum magna. Vestibulum at vehicula sapien, vitae maximus ante. Vivamus scelerisque tempus enim at ullamcorper. Integer bibendum libero id ligula mattis pharetra. Proin sollicitudin, erat in dignissim eleifend, lectus massa ullamcorper nisi, ac dignissim augue eros eget sapien. Donec vehicula congue nunc eget sollicitudin. Integer pretium mauris id ligula tempor, at vestibulum felis cursus. Sed ac nunc vitae mi vehicula congue. Maecenas sagittis non tortor et fringilla. 
+                </div>
+                <div id="docs_seance" style="margin-bottom: 10px;">
+                    <h3 id="doc" style="font-style: italic; font-size: 22px; text-decoration: underline cornflowerblue; padding: 15px; border-radius: 20px;" class="inline-block hover:bg-red-600 hover:text-white">docname.extension</h3>
+                </div>
+            </div>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+        <script>
+            var firebaseConfig = {
+                apiKey: "AIzaSyCyEdsCGvFSrvlyfamVNPT-HyLxdOujBGI",
+                authDomain: "schoolnet-fee00.firebaseapp.com",
+                databaseURL: "https://schoolnet-fee00.firebaseio.com",
+                projectId: "schoolnet-fee00",
+                storageBucket: "schoolnet-fee00.appspot.com",
+                messagingSenderId: "1010257640849",
+                appId: "1:1010257640849:web:9cad46e21136b120336e30",
+                measurementId: "G-09GRW582KC"
+            };
+            firebase.initializeApp(firebaseConfig);
+            
+            firebase.analytics();
+        </script>
+        <script src="css/engine.js"></script>
+    </body>
+</html>
